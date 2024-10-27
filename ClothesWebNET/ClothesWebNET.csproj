@@ -120,6 +120,10 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controller\ProductsController.cs" />
+    <Compile Include="Areas\Admin\Controller\UsersController.cs" />
+    <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\CollectionsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
@@ -132,6 +136,7 @@
     <Compile Include="Models\Bill.cs">
       <DependentUpon>ClothesModels.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Cart.cs" />
     <Compile Include="Models\ClothesModels.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -226,6 +231,19 @@
     <Content Include="Scripts\checkout.js" />
     <Content Include="Scripts\detail.js" />
     <Content Include="Scripts\index.js" />
+    <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Admin\Views\Users\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Web.config" />
+    <Content Include="Areas\Admin\Views\Users\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Users\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Users\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Users\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Products\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Products\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\Error.cshtml" />
+    <Content Include="Areas\Admin\Views\Products\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Products\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Products\Edit.cshtml" />
     <None Include="Scripts\jquery-3.6.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.6.0.js" />
     <Content Include="Scripts\jquery-3.6.0.min.js" />
@@ -277,9 +295,13 @@
     <Content Include="Views\Home\Contract.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\MyInfo.cshtml" />
+    <Content Include="Views\Cart\Checkout.cshtml" />
+    <Content Include="Views\Cart\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\AdminAreaRegistration\" />
+    <Folder Include="Views\cds\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css.map" />
