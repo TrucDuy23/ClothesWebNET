@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     Layout = null;
 }
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -36,10 +35,6 @@
 
 </head>
 <body>
-
-
-
-
 
     <div class="main">
         <div class="grid">
@@ -83,25 +78,20 @@
                         </div>
                         <div class="form-inline form-item">
                             <div class="form-control w-1">
-                                <select placeholder="Tỉnh/Thành phố"
-                                        id="province"
-                                        type="text">
+                                <select id="province" type="text">
                                     <option value="invalid">Tỉnh/Thành phố</option>
-
                                 </select>
                                 <small></small>
                             </div>
                             <div class="form-control w-1">
-                                <select placeholder="Quận/Huyện" id="district" type="text">
+                                <select id="district" type="text">
                                     <option value="invalid">Quận/Huyện</option>
-
                                 </select>
                                 <small></small>
                             </div>
                             <div class="form-control w-1">
-                                <select placeholder="Phường/Xã" id="village" type="text">
+                                <select id="village" type="text">
                                     <option value="invalid">Phường/Xã</option>
-
                                 </select>
                                 <small></small>
                             </div>
@@ -119,11 +109,8 @@
                 </div>
                 <div class="checkout-bill">
                     <div class="checkout-product" id="detailProduct">
-
-
                     </div>
                     <div class="payment">
-
                         <div class="payment-money">
                             <div class="total">
                                 <div class="total-text">Tạm tính:</div>
@@ -168,66 +155,72 @@
 
     @Scripts.RenderFormat("<script src='{0}' type='module'></script>", "~/bundles/checkout")
 
-
-
 </body>
 </html>
 
 <script>
-    const listCart = JSON.parse(window.localStorage.getItem('cart'));
-    let totalMoney = document.getElementById('totalMoney');
-    let tamTinh = document.getElementById('tamTinh');
-    let render = document.getElementById('detailProduct');
-    let total = 0
-    function renderTableLeft(dataList) {
-        $(document).ready(() => {
-            let str = ''
+    // Dữ liệu mẫu cho các tỉnh/thành phố và quận/huyện/phường/xã
+    const locationData = {
+        "Hồ Chí Minh": {
+            "Quận 1": ["Phường Bến Nghé", "Phường Bến Thành"],
+            "Quận 3": ["Phường Võ Thị Sáu", "Phường 9"]
+        },
+        "Hà Nội": {
+            "Ba Đình": ["Phường Phúc Xá", "Phường Trúc Bạch"],
+            "Đống Đa": ["Phường Láng Thượng", "Phường Khương Thượng"]
+        }
+    };
 
-            let count = 0;
-            dataList.forEach((el, index) => {
-                count++
-                let intoMoney = Number(el['price']) * Number(el['amount'])
-
-
-
-                let bodyCart = `
-                    <div class="product-item">
-                                <div class="item-img">
-                                    <img src='${el['img']}'
-                                         alt=""
-                                         class="img-product" />
-                                    <span class="amount">${el['amount']}</span>
-                                </div>
-                                <div class="item-info">
-                                    <div class="info-left">
-                                        <div class="info-name-product">
-                                           ${el['title']}
-                                        </div>
-                                        <div class="info-size-product">${el['size']}</div>
-                                    </div>
-                                    <div class="info-right">
-                                        <div class="item-money">${intoMoney.toLocaleString()},000VND</div>
-                                    </div>
-                                </div>
-                            </div>
-                `
-                total += intoMoney
-                str += bodyCart
-            })
-
-
-
-            let m = parseInt(total.toLocaleString().split('.').join('')) + 50;
-           @* console.log(m)*@
-            totalMoney.innerHTML = m.toLocaleString() + ",000VND";
-            tamTinh.innerHTML = total.toLocaleString() + ",000VND";
-            render.innerHTML = str;
-
-
-
-
-        })
+    function populateProvinces() {
+        const provinceSelect = document.getElementById("province");
+        for (let province in locationData) {
+            let option = document.createElement("option");
+            option.value = province;
+            option.textContent = province;
+            provinceSelect.appendChild(option);
+        }
     }
-    renderTableLeft(listCart);
-</script>
 
+    function populateDistricts() {
+        const provinceSelect = document.getElementById("province");
+        const districtSelect = document.getElementById("district");
+        const villageSelect = document.getElementById("village");
+
+        districtSelect.innerHTML = "<option value='invalid'>Quận/Huyện</option>";
+        villageSelect.innerHTML = "<option value='invalid'>Phường/Xã</option>";
+
+        const selectedProvince = provinceSelect.value;
+        if (selectedProvince && locationData[selectedProvince]) {
+            for (let district in locationData[selectedProvince]) {
+                let option = document.createElement("option");
+                option.value = district;
+                option.textContent = district;
+                districtSelect.appendChild(option);
+            }
+        }
+    }
+
+    function populateVillages() {
+        const provinceSelect = document.getElementById("province");
+        const districtSelect = document.getElementById("district");
+        const villageSelect = document.getElementById("village");
+
+        villageSelect.innerHTML = "<option value='invalid'>Phường/Xã</option>";
+
+        const selectedProvince = provinceSelect.value;
+        const selectedDistrict = districtSelect.value;
+
+        if (selectedProvince && selectedDistrict && locationData[selectedProvince][selectedDistrict]) {
+            locationData[selectedProvince][selectedDistrict].forEach(village => {
+                let option = document.createElement("option");
+                option.value = village;
+                option.textContent = village;
+                villageSelect.appendChild(option);
+            });
+        }
+    }
+
+    document.addEventListener("DOMContentLoaded", populateProvinces);
+    document.getElementById("province").addEventListener("change", populateDistricts);
+    document.getElementById("district").addEventListener("change", populateVillages);
+</script>
