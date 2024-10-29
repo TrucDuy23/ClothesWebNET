@@ -1,0 +1,226 @@
+﻿@{
+    Layout = null;
+}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="shortcut icon"
+          href="//theme.hstatic.net/200000321771/1000699946/14/favicon.png?v=302"
+          type="image/png" />
+    <!-- Icon -->
+    <link href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css"
+          rel="stylesheet" />
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
+
+    <!-- Reset CSS -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.css" />
+
+    <!-- Quicksand font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap"
+          rel="stylesheet" />
+    <title>ZOMBIE® OFFICIAL STORE - Thanh toán đơn hàng</title>
+    @Styles.Render("~/Content/base")
+    @Styles.Render("~/Content/checkout")
+    @Styles.Render("~/Content/footer")
+
+</head>
+<body>
+
+    <div class="main">
+        <div class="grid">
+            <div class="checkout">
+                <div class="checkout-info">
+                    <div class="checkout-logo-text checkout-item">
+                        <a style="color:#000000" href="/"> ZOMBIE® OFFICIAL STORE</a>
+                    </div>
+                    <ul class="checkout-breadcrumb checkout-item">
+                        <li class="breadcrumb-item">
+                            <a href="/cart.html" class="text-link cart">Giỏ hàng </a>
+                            <i class="icon-link bx bx-chevron-right"></i>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <span class="text-link">Thông tin giao hàng</span>
+                            <i class="icon-link bx bx-chevron-right"></i>
+                        </li>
+
+                    </ul>
+                    <div class="checkout-text checkout-item">Thông tin giao hàng</div>
+
+                    <!-- <form  class="form-info checkout-item">-->
+                    <div class="form-info checkout-item">
+                        <div class="form-control form-item">
+                            <input placeholder="Họ và tên" id="fullname" type="text" name="fullName" />
+                            <small></small>
+                        </div>
+                        <div class="form-inline form-item">
+                            <div class="form-control w-2">
+                                <input placeholder="Email" id="email" type="text" name="email" />
+                                <small></small>
+                            </div>
+                            <div class="form-control w-1">
+                                <input placeholder="Số điện thoại" id="phone" name="phone" />
+                                <small></small>
+                            </div>
+                        </div>
+                        <div class="form-control form-item">
+                            <input placeholder="Địa chỉ" id="address" type="text" name="address" />
+                            <small></small>
+                        </div>
+                        <div class="form-inline form-item">
+                            <div class="form-control w-1">
+                                <select id="province" type="text">
+                                    <option value="invalid">Tỉnh/Thành phố</option>
+                                </select>
+                                <small></small>
+                            </div>
+                            <div class="form-control w-1">
+                                <select id="district" type="text">
+                                    <option value="invalid">Quận/Huyện</option>
+                                </select>
+                                <small></small>
+                            </div>
+                            <div class="form-control w-1">
+                                <select id="village" type="text">
+                                    <option value="invalid">Phường/Xã</option>
+                                </select>
+                                <small></small>
+                            </div>
+                        </div>
+
+                        <div class="pay form-item">
+                            <a href="/cart" class="cart">Giỏ hàng</a>
+                            <button type="button" class="btnPay" id="save_btn">
+                                THANH TOÁN
+                            </button>
+                        </div>
+                    </div>
+
+                    <!--     </form>  -->
+                </div>
+                <div class="checkout-bill">
+                    <div class="checkout-product" id="detailProduct">
+                    </div>
+                    <div class="payment">
+                        <div class="payment-money">
+                            <div class="total">
+                                <div class="total-text">Tạm tính:</div>
+                                <div class="total-text total-money" id="tamTinh">0₫</div>
+                            </div>
+                            <div class="total">
+                                <div class="total-text">Phí vận chuyển:</div>
+                                <div class="total-text total-money">50,000 VND</div>
+                            </div>
+                        </div>
+                        <div class="payment-total total">
+                            <div class="total-text">Tổng cộng:</div>
+                            <div class="total-text total-money" id="totalMoney">0₫</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="footer">
+        <div class="footer-top">
+            <div class="grid">
+                <div class="footer-news">
+                    <i class="footer-top-icon bx bx-mail-send"></i>Đăng kí nhận tin
+                </div>
+
+                <div class="footer-form-news">
+                    <input type="text"
+                           placeholder="Nhập email của bạn"
+                           class="send-mail" />
+                    <button type="submit" class="btn-sendmail">Đăng ký</button>
+                </div>
+                <div class="footer-contact">
+                    <i class="footer-top-icon bx bxs-phone"></i> Hỗ trợ / Mua hàng
+                    0924989342
+                </div>
+            </div>
+        </div>
+        <div class="footer-mid"></div>
+        <div class="footer-bot"></div>
+    </footer>
+
+    @Scripts.RenderFormat("<script src='{0}' type='module'></script>", "~/bundles/checkout")
+
+</body>
+</html>
+
+<script>
+    // Dữ liệu mẫu cho các tỉnh/thành phố và quận/huyện/phường/xã
+    const locationData = {
+        "Hồ Chí Minh": {
+            "Quận 1": ["Phường Bến Nghé", "Phường Bến Thành"],
+            "Quận 3": ["Phường Võ Thị Sáu", "Phường 9"]
+        },
+        "Hà Nội": {
+            "Ba Đình": ["Phường Phúc Xá", "Phường Trúc Bạch"],
+            "Đống Đa": ["Phường Láng Thượng", "Phường Khương Thượng"]
+        }
+    };
+
+    function populateProvinces() {
+        const provinceSelect = document.getElementById("province");
+        for (let province in locationData) {
+            let option = document.createElement("option");
+            option.value = province;
+            option.textContent = province;
+            provinceSelect.appendChild(option);
+        }
+    }
+
+    function populateDistricts() {
+        const provinceSelect = document.getElementById("province");
+        const districtSelect = document.getElementById("district");
+        const villageSelect = document.getElementById("village");
+
+        districtSelect.innerHTML = "<option value='invalid'>Quận/Huyện</option>";
+        villageSelect.innerHTML = "<option value='invalid'>Phường/Xã</option>";
+
+        const selectedProvince = provinceSelect.value;
+        if (selectedProvince && locationData[selectedProvince]) {
+            for (let district in locationData[selectedProvince]) {
+                let option = document.createElement("option");
+                option.value = district;
+                option.textContent = district;
+                districtSelect.appendChild(option);
+            }
+        }
+    }
+
+    function populateVillages() {
+        const provinceSelect = document.getElementById("province");
+        const districtSelect = document.getElementById("district");
+        const villageSelect = document.getElementById("village");
+
+        villageSelect.innerHTML = "<option value='invalid'>Phường/Xã</option>";
+
+        const selectedProvince = provinceSelect.value;
+        const selectedDistrict = districtSelect.value;
+
+        if (selectedProvince && selectedDistrict && locationData[selectedProvince][selectedDistrict]) {
+            locationData[selectedProvince][selectedDistrict].forEach(village => {
+                let option = document.createElement("option");
+                option.value = village;
+                option.textContent = village;
+                villageSelect.appendChild(option);
+            });
+        }
+    }
+
+    document.addEventListener("DOMContentLoaded", populateProvinces);
+    document.getElementById("province").addEventListener("change", populateDistricts);
+    document.getElementById("district").addEventListener("change", populateVillages);
+</script>
